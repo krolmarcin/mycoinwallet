@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 public class Configuration {
 
     @Bean
-    public EthHistoryCatalog ethCatalog() {
+    public EthHistoryCatalog ethHistoryCatalog() {
         return new JPAEthHistoryCatalogRepository();
     }
 
