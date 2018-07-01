@@ -2,19 +2,20 @@ package infrastucture;
 
 import application.EthHistoryCatalog;
 import application.EthDto;
-import domain.EthBalanceRepository;
+import application.EthHistoryDto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-public class JPAEthBalanceRepository implements EthBalanceRepository {
+public class JPAEthHistoryCatalogRepository implements EthHistoryCatalog {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<EthDto> getBalance(String walletId) {
+    public List<EthHistoryDto> getHistory(String walletId) {
         return null;
     }
 
 }
+

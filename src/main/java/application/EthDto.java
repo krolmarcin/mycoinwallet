@@ -29,4 +29,5 @@ public class EthDto {
     public void setBtcBalance(String btcBalance) {
         this.btcBalance = btcBalance;
     }
+
 }

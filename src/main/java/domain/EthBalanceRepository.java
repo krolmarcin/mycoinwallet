@@ -1,7 +1,10 @@
 package domain;
 
+import application.EthDto;
+import java.util.List;
+
 public interface EthBalanceRepository {
 
-    EthBalance get(String walletId);
+    List<EthDto> getBalance(String walletId);
 
 }
