@@ -8,7 +8,6 @@ import javax.persistence.Id;
 public class EthBalance {
 
     @Id
-    @GeneratedValue
     private Long id;
     private String ethBalance;
     private String usdBalance;
