@@ -1,8 +1,7 @@
-package infrastucture;
+package pl.com.marcinkrol.mycoinwallet.infrastucture;
 
-import application.EthHistoryCatalog;
-import application.EthDto;
-import domain.EthBalanceRepository;
+import pl.com.marcinkrol.mycoinwallet.application.EthDto;
+import pl.com.marcinkrol.mycoinwallet.domain.EthBalanceRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

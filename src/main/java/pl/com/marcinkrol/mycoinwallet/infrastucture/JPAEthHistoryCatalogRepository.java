@@ -1,8 +1,7 @@
-package infrastucture;
+package pl.com.marcinkrol.mycoinwallet.infrastucture;
 
-import application.EthHistoryCatalog;
-import application.EthDto;
-import application.EthHistoryDto;
+import pl.com.marcinkrol.mycoinwallet.application.EthHistoryCatalog;
+import pl.com.marcinkrol.mycoinwallet.application.EthHistoryDto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,4 +17,3 @@ public class JPAEthHistoryCatalogRepository implements EthHistoryCatalog {
     }
 
 }
-

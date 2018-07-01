@@ -1,13 +1,13 @@
-package ui;
+package pl.com.marcinkrol.mycoinwallet.ui;
 
-import application.EthHistoryCatalog;
-import application.EthDto;
-import application.EthHistoryDto;
-import domain.EthBalanceRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.com.marcinkrol.mycoinwallet.application.EthDto;
+import pl.com.marcinkrol.mycoinwallet.application.EthHistoryDto;
+import pl.com.marcinkrol.mycoinwallet.application.EthHistoryCatalog;
+import pl.com.marcinkrol.mycoinwallet.domain.EthBalanceRepository;
 
 import java.util.List;
 

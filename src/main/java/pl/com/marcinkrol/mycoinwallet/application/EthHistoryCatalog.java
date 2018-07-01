@@ -1,4 +1,4 @@
-package application;
+package pl.com.marcinkrol.mycoinwallet.application;
 
 import java.util.List;
 

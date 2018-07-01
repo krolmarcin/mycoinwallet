@@ -1,6 +1,7 @@
-package domain;
+package pl.com.marcinkrol.mycoinwallet.domain;
 
-import application.EthDto;
+import pl.com.marcinkrol.mycoinwallet.application.EthDto;
+
 import java.util.List;
 
 public interface EthBalanceRepository {

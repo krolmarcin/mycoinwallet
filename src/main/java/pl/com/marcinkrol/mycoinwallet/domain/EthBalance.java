@@ -1,4 +1,4 @@
-package domain;
+package pl.com.marcinkrol.mycoinwallet.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

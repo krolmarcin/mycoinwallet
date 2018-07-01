@@ -1,8 +1,8 @@
-package infrastucture;
+package pl.com.marcinkrol.mycoinwallet.infrastucture;
 
-import application.EthHistoryCatalog;
-import domain.EthBalanceRepository;
 import org.springframework.context.annotation.Bean;
+import pl.com.marcinkrol.mycoinwallet.application.EthHistoryCatalog;
+import pl.com.marcinkrol.mycoinwallet.domain.EthBalanceRepository;
 
 @org.springframework.context.annotation.Configuration
 public class Configuration {
