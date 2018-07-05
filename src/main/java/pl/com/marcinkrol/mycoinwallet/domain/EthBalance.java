@@ -1,8 +1,6 @@
 package pl.com.marcinkrol.mycoinwallet.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class EthBalance {
@@ -13,7 +11,18 @@ public class EthBalance {
     private String usdBalance;
     private String btcBalance;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "accountAddressId")
+    private AccountAddress accountAddress;
+
     EthBalance() {
+    }
+
+    public EthBalance(String ethBalance, String usdBalance, String btcBalance, AccountAddress accountAddress) {
+        this.ethBalance = ethBalance;
+        this.usdBalance = usdBalance;
+        this.btcBalance = btcBalance;
+        this.accountAddress = accountAddress;
     }
 
     public Long getId() {

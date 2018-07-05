@@ -1,8 +1,7 @@
 package pl.com.marcinkrol.mycoinwallet.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class AccountAddress {
@@ -12,7 +11,16 @@ public class AccountAddress {
     private Long id;
     private String walletId;
 
-    AccountAddress(){}
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "balanceId")
+    private Set<EthBalance> ethBalances;
+
+    AccountAddress() {
+    }
+
+    public AccountAddress(String walletId) {
+        this.walletId = walletId;
+    }
 
     public Long getId() {
         return id;
