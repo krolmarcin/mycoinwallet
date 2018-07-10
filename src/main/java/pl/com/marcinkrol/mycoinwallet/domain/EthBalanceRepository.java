@@ -1,11 +1,11 @@
 package pl.com.marcinkrol.mycoinwallet.domain;
 
-import pl.com.marcinkrol.mycoinwallet.application.EthDto;
-
-import java.util.List;
+import pl.com.marcinkrol.mycoinwallet.application.EthBalanceDto;
 
 public interface EthBalanceRepository {
 
-    List<EthDto> getBalance(String walletId);
+    EthBalanceDto getBalance(String walletId);
+
+    void put(String walletId, String balance);
 
 }

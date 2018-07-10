@@ -1,19 +1,23 @@
 package pl.com.marcinkrol.mycoinwallet.infrastucture;
 
-import pl.com.marcinkrol.mycoinwallet.application.EthDto;
+import pl.com.marcinkrol.mycoinwallet.application.EthBalanceDto;
 import pl.com.marcinkrol.mycoinwallet.domain.EthBalanceRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
 
 public class JPAEthBalanceRepository implements EthBalanceRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<EthDto> getBalance(String walletId) {
+    public EthBalanceDto getBalance(String walletId) {
         return null;
     }
+
+    public void put(String walletId, String balance) {
+
+    }
+
 
 }

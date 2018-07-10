@@ -1,6 +1,6 @@
 package pl.com.marcinkrol.mycoinwallet.application;
 
-public class EthDto {
+public class EthBalanceDto {
 
     private String ethBalance;
     private String usdBalance;

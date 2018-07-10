@@ -4,7 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.com.marcinkrol.mycoinwallet.application.EthDto;
+import pl.com.marcinkrol.mycoinwallet.application.EthBalanceProcess;
+import pl.com.marcinkrol.mycoinwallet.application.EthBalanceDto;
 import pl.com.marcinkrol.mycoinwallet.application.EthHistoryDto;
 import pl.com.marcinkrol.mycoinwallet.application.EthHistoryCatalog;
 import pl.com.marcinkrol.mycoinwallet.domain.EthBalanceRepository;
@@ -17,10 +18,14 @@ public class EthWalletController {
 
     private EthHistoryCatalog ethHistoryCatalog;
     private EthBalanceRepository ethBalanceRepository;
+    private EthBalanceProcess ethBalanceProcess;
 
-    public EthWalletController(EthHistoryCatalog ethHistoryCatalog, EthBalanceRepository ethBalanceRepository) {
+    public EthWalletController(EthHistoryCatalog ethHistoryCatalog,
+                               EthBalanceRepository ethBalanceRepository,
+                               EthBalanceProcess ethBalanceProcess) {
         this.ethHistoryCatalog = ethHistoryCatalog;
         this.ethBalanceRepository = ethBalanceRepository;
+        this.ethBalanceProcess = ethBalanceProcess;
     }
 
     @GetMapping("/{walletId}/history")
@@ -29,8 +34,8 @@ public class EthWalletController {
     }
 
     @GetMapping("/{walletId}/balance")
-    public List<EthDto> getBalance(@PathVariable String walletId) {
-        return ethBalanceRepository.getBalance(walletId);
+    public EthBalanceDto getBalance(@PathVariable String walletId) {
+        return ethBalanceProcess.getBalance(walletId);
     }
 
 }
