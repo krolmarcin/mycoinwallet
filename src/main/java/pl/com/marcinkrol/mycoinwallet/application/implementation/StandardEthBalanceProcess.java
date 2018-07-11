@@ -2,23 +2,23 @@ package pl.com.marcinkrol.mycoinwallet.application.implementation;
 
 import pl.com.marcinkrol.mycoinwallet.application.EthBalanceProcess;
 import pl.com.marcinkrol.mycoinwallet.application.EthBalanceDto;
-import pl.com.marcinkrol.mycoinwallet.domain.AccountAddress;
-import pl.com.marcinkrol.mycoinwallet.domain.AccountAddressRepository;
-import pl.com.marcinkrol.mycoinwallet.domain.EthBalanceFacade;
-import pl.com.marcinkrol.mycoinwallet.domain.EthBalanceRepository;
+import pl.com.marcinkrol.mycoinwallet.domain.*;
 
 public class StandardEthBalanceProcess implements EthBalanceProcess {
 
     private AccountAddressRepository accountAddressRepository;
     private EthBalanceRepository ethBalanceRepository;
     private EthBalanceFacade ethBalanceFacade;
+    private TokenConverter tokenConverter;
 
     public StandardEthBalanceProcess(AccountAddressRepository accountAddressRepository,
                                      EthBalanceRepository ethBalanceRepository,
-                                     EthBalanceFacade ethBalanceFacade) {
+                                     EthBalanceFacade ethBalanceFacade,
+                                     TokenConverter tokenConverter) {
         this.accountAddressRepository = accountAddressRepository;
         this.ethBalanceRepository = ethBalanceRepository;
         this.ethBalanceFacade = ethBalanceFacade;
+        this.tokenConverter = tokenConverter;
     }
 
     public EthBalanceDto getBalance(String walletId) {
@@ -28,8 +28,10 @@ public class StandardEthBalanceProcess implements EthBalanceProcess {
         //if (!accountAddressRepository.exists(walletId)) {
         //    accountAddressRepository.put(accountAddress);
         //}
+        String convertedBalance = tokenConverter.weiToEthConvert(balance);
+
         EthBalanceDto ethBalanceDto = new EthBalanceDto();
-        ethBalanceDto.setEthBalance(balance);
+        ethBalanceDto.setEthBalance(convertedBalance);
         ethBalanceDto.setBtcBalance("0");
         ethBalanceDto.setUsdBalance("0");
         return ethBalanceDto;

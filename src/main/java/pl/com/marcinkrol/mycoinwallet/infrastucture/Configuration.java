@@ -4,9 +4,7 @@ import org.springframework.context.annotation.Bean;
 import pl.com.marcinkrol.mycoinwallet.application.EthBalanceProcess;
 import pl.com.marcinkrol.mycoinwallet.application.EthHistoryCatalog;
 import pl.com.marcinkrol.mycoinwallet.application.implementation.StandardEthBalanceProcess;
-import pl.com.marcinkrol.mycoinwallet.domain.AccountAddressRepository;
-import pl.com.marcinkrol.mycoinwallet.domain.EthBalanceFacade;
-import pl.com.marcinkrol.mycoinwallet.domain.EthBalanceRepository;
+import pl.com.marcinkrol.mycoinwallet.domain.*;
 
 @org.springframework.context.annotation.Configuration
 public class Configuration {
@@ -32,8 +30,16 @@ public class Configuration {
     }
 
     @Bean
+    public TokenConverter tokenConverter() {
+        return new StandardTokenConverter();
+    }
+
+    @Bean
     public EthBalanceProcess ethBalanceProcess() {
-        return new StandardEthBalanceProcess(accountAddressRepository(), ethBalanceRepository(), ethBalanceFacade());
+        return new StandardEthBalanceProcess(accountAddressRepository(),
+                ethBalanceRepository(),
+                ethBalanceFacade(),
+                tokenConverter());
     }
 
 }

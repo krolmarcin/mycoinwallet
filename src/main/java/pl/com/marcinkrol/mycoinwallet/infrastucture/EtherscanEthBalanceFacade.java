@@ -1,9 +1,7 @@
 package pl.com.marcinkrol.mycoinwallet.infrastucture;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import pl.com.marcinkrol.mycoinwallet.domain.EthBalanceFacade;
 
@@ -16,7 +14,6 @@ import java.net.URLConnection;
 
 public class EtherscanEthBalanceFacade implements EthBalanceFacade {
 
-    private JSONParser parser = new JSONParser();
     private static final String apiKey = "A";
 
     public String getEthBalance(String walletId) {
@@ -31,8 +28,8 @@ public class EtherscanEthBalanceFacade implements EthBalanceFacade {
 
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
-                JSONObject jo = (JSONObject) JSONValue.parseWithException(inputLine);
-                result = (String) jo.get("result");
+                JSONObject jsonObject = (JSONObject) JSONValue.parseWithException(inputLine);
+                result = (String) jsonObject.get("result");
             }
             in.close();
         } catch (MalformedURLException e) {
