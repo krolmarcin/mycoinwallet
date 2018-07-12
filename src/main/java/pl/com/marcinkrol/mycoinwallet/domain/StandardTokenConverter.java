@@ -8,7 +8,7 @@ public class StandardTokenConverter implements TokenConverter {
         BigDecimal number = new BigDecimal(value);
         BigDecimal factor = new BigDecimal("1000000000000000000");
         BigDecimal result = number.divide(factor);
-        return "" + (result.setScale(5, BigDecimal.ROUND_HALF_DOWN));
+        return "" + (result.setScale(4, BigDecimal.ROUND_HALF_DOWN));
     }
 
 }

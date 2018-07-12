@@ -1,9 +1,11 @@
 package pl.com.marcinkrol.mycoinwallet.infrastucture;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import pl.com.marcinkrol.mycoinwallet.domain.EthBalanceFacade;
+import pl.com.marcinkrol.mycoinwallet.domain.EthLastPriceFacade;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,15 +13,16 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.LinkedList;
+import java.util.List;
 
-public class EtherscanEthBalanceFacade implements EthBalanceFacade {
+import static pl.com.marcinkrol.mycoinwallet.infrastucture.EtherscanEthBalanceFacade.apiKey;
 
-    public static final String apiKey = "ATE1PZHA2KYKRP36TRBE1EI297YVR2PI49";
+public class EtherScanLastEthPriceFacade implements EthLastPriceFacade {
 
-    public String getEthBalance(String walletId) {
-        String result = "";
-        String balanceUrlRequest = "https://api.etherscan.io/api?module=account&action=balance&address="
-                + walletId + "&tag=latest&apikey=" + apiKey;
+    public List<String> getLastEthPrice() {
+        List<String> result = new LinkedList<String>();
+        String balanceUrlRequest = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=" + apiKey;
         try {
             URL url = new URL(balanceUrlRequest);
             URLConnection connection = url.openConnection();
@@ -28,8 +31,12 @@ public class EtherscanEthBalanceFacade implements EthBalanceFacade {
 
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
-                JSONObject jsonObject = (JSONObject) JSONValue.parseWithException(inputLine);
-                result = (String) jsonObject.get("result");
+                JSONObject fullObject = (JSONObject) JSONValue.parseWithException(inputLine);
+                JSONObject jsonInFullObject = (JSONObject) fullObject.get("result");
+                String ethusd = (String) jsonInFullObject.get("ethusd");
+                result.add(ethusd);
+                String ethbtc = (String) jsonInFullObject.get("ethbtc");
+                result.add(ethbtc);
             }
             in.close();
         } catch (MalformedURLException e) {

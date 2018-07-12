@@ -35,11 +35,23 @@ public class Configuration {
     }
 
     @Bean
+    public EthLastPriceFacade ethLastPriceFacade() {
+        return new EtherScanLastEthPriceFacade();
+    }
+
+    @Bean
+    public BalanceCalculator balanceCalculator() {
+        return new StandardBalanceCalulator();
+    }
+
+    @Bean
     public EthBalanceProcess ethBalanceProcess() {
         return new StandardEthBalanceProcess(accountAddressRepository(),
                 ethBalanceRepository(),
                 ethBalanceFacade(),
-                tokenConverter());
+                tokenConverter(),
+                ethLastPriceFacade(),
+                balanceCalculator());
     }
 
 }
