@@ -6,6 +6,6 @@ public interface EthBalanceRepository {
 
     EthBalanceDto getBalance(String walletId);
 
-    void put(String walletId, String balance);
+    void put(EthBalance ethBalance);
 
 }

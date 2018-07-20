@@ -1,28 +1,31 @@
 package pl.com.marcinkrol.mycoinwallet.domain;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class EthBalance {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String ethBalance;
     private String usdBalance;
     private String btcBalance;
+    private LocalDateTime date;
 
-    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "accountAddressId")
-    private AccountAddress accountAddress;
+    private Long accountAddressId;
 
     EthBalance() {
     }
 
-    public EthBalance(String ethBalance, String usdBalance, String btcBalance, AccountAddress accountAddress) {
+    public EthBalance(String ethBalance, String usdBalance, String btcBalance, Long id) {
         this.ethBalance = ethBalance;
         this.usdBalance = usdBalance;
         this.btcBalance = btcBalance;
-        this.accountAddress = accountAddress;
+        this.accountAddressId = id;
+        this.date = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -41,4 +44,7 @@ public class EthBalance {
         return btcBalance;
     }
 
+    public Long getAccountAddressId() {
+        return accountAddressId;
+    }
 }

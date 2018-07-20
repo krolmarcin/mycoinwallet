@@ -1,9 +1,7 @@
 package pl.com.marcinkrol.mycoinwallet.infrastucture;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import pl.com.marcinkrol.mycoinwallet.domain.EthLastPriceFacade;
 
@@ -33,10 +31,10 @@ public class EtherScanLastEthPriceFacade implements EthLastPriceFacade {
             while ((inputLine = in.readLine()) != null) {
                 JSONObject fullObject = (JSONObject) JSONValue.parseWithException(inputLine);
                 JSONObject jsonInFullObject = (JSONObject) fullObject.get("result");
-                String ethusd = (String) jsonInFullObject.get("ethusd");
-                result.add(ethusd);
-                String ethbtc = (String) jsonInFullObject.get("ethbtc");
-                result.add(ethbtc);
+                String ethUsd = (String) jsonInFullObject.get("ethusd");
+                result.add(ethUsd);
+                String ethBtc = (String) jsonInFullObject.get("ethbtc");
+                result.add(ethBtc);
             }
             in.close();
         } catch (MalformedURLException e) {

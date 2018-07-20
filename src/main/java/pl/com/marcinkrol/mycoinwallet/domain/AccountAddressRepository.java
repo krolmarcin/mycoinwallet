@@ -6,6 +6,8 @@ public interface AccountAddressRepository {
 
     AccountAddress get(String walletId);
 
+    Long getId(String walletId);
+
     boolean exists(String walletId);
 
 }

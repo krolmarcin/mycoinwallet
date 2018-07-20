@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.com.marcinkrol.mycoinwallet.application.EthBalanceProcess;
 import pl.com.marcinkrol.mycoinwallet.application.EthBalanceDto;
-import pl.com.marcinkrol.mycoinwallet.application.EthHistoryDto;
+import pl.com.marcinkrol.mycoinwallet.application.EthBalanceHistoryDto;
 import pl.com.marcinkrol.mycoinwallet.application.EthHistoryCatalog;
 import pl.com.marcinkrol.mycoinwallet.domain.EthBalanceRepository;
 
@@ -29,7 +29,7 @@ public class EthWalletController {
     }
 
     @GetMapping("/{walletId}/history")
-    public List<EthHistoryDto> getHistory(@PathVariable String walletId) {
+    public List<EthBalanceHistoryDto> getHistory(@PathVariable String walletId) {
         return ethHistoryCatalog.getHistory(walletId);
     }
 

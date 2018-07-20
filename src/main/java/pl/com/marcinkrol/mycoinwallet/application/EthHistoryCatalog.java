@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface EthHistoryCatalog {
 
-    List<EthHistoryDto> getHistory(String walletId);
+    List<EthBalanceHistoryDto> getHistory(String walletId);
 
 }

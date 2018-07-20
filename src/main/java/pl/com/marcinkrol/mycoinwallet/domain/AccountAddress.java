@@ -11,10 +11,6 @@ public class AccountAddress {
     private Long id;
     private String walletId;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "balanceId")
-    private Set<EthBalance> ethBalances;
-
     AccountAddress() {
     }
 

@@ -41,7 +41,7 @@ public class Configuration {
 
     @Bean
     public BalanceCalculator balanceCalculator() {
-        return new StandardBalanceCalulator();
+        return new StandardBalanceCalculator();
     }
 
     @Bean
