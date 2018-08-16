@@ -6,8 +6,8 @@
 
     <groupId>pl.com.marcinkrol.mycoinwallet</groupId>
     <artifactId>mycoinwallet</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
     <build>
         <plugins>
             <plugin>
@@ -16,6 +16,16 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <archive>
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>

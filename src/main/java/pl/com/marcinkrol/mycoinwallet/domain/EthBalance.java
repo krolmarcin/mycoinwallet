@@ -1,5 +1,7 @@
 package pl.com.marcinkrol.mycoinwallet.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -12,6 +14,8 @@ public class EthBalance {
     private String ethBalance;
     private String usdBalance;
     private String btcBalance;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
 
     @JoinColumn(name = "accountAddressId")
