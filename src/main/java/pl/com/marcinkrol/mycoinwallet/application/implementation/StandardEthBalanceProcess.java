@@ -34,8 +34,11 @@ public class StandardEthBalanceProcess implements EthBalanceProcess {
     @Override
     public EthBalanceDto getBalance(String walletId) {
         String weiBalance = ethBalanceFacade.getEthBalance(walletId);
-        AccountAddress accountAddress = new AccountAddress(walletId);
-        putAccountAddressToRepo(accountAddress);
+
+        putAccAddressIfDoesNotExist(walletId);
+
+        AccountAddress accountAddress = accountAddressRepository.get(walletId);
+
         String ethBalance = tokenConverter.weiToEthConvert(weiBalance);
 
         List<String> ethLastPriceList = ethLastPriceFacade.getLastEthPrice();
@@ -45,17 +48,23 @@ public class StandardEthBalanceProcess implements EthBalanceProcess {
         String usdBalance = balanceCalculator.calculateBalance(ethBalance, usdPrice, "usd");
         String btcBalance = balanceCalculator.calculateBalance(ethBalance, btcPrice, "btc");
 
-        Long id = accountAddressRepository.getId(walletId);
-        EthBalance balance = new EthBalance(ethBalance, usdBalance, btcBalance, id);
+        EthBalance balance = new EthBalance(ethBalance, usdBalance, btcBalance, accountAddress);
         ethBalanceRepository.put(balance);
 
         return getEthBalanceDto(ethBalance, usdBalance, btcBalance);
+
+
+    }
+
+    private void putAccAddressIfDoesNotExist(String walletId) {
+        if (!accountAddressRepository.exists(walletId)) {
+            AccountAddress accountAddress = new AccountAddress(walletId);
+            putAccountAddressToRepo(accountAddress);
+        }
     }
 
     private void putAccountAddressToRepo(AccountAddress accountAddress) {
-        if (!accountAddressRepository.exists(accountAddress.getWalletId())) {
-            accountAddressRepository.put(accountAddress);
-        }
+        accountAddressRepository.put(accountAddress);
     }
 
     private EthBalanceDto getEthBalanceDto(String convertedEthBalance, String usdBalance, String btcBalance) {

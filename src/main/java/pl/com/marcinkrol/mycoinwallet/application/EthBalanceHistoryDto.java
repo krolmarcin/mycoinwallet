@@ -1,20 +1,23 @@
 package pl.com.marcinkrol.mycoinwallet.application;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 
 public class EthBalanceHistoryDto {
 
-    String etcBalance;
-    String ethBalance;
-    String usdBalance;
-    LocalDateTime date;
+    private String btcBalance;
+    private String ethBalance;
+    private String usdBalance;
 
-    public String getEtcBalance() {
-        return etcBalance;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime date;
+
+    public String getBtcBalance() {
+        return btcBalance;
     }
 
-    public void setEtcBalance(String etcBalance) {
-        this.etcBalance = etcBalance;
+    public void setBtcBalance(String btcBalance) {
+        this.btcBalance = btcBalance;
     }
 
     public String getEthBalance() {

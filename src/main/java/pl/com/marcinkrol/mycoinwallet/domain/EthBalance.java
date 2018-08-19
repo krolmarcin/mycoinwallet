@@ -18,17 +18,18 @@ public class EthBalance {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
 
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "accountAddressId")
-    private Long accountAddressId;
+    private AccountAddress accountAddress;
 
     EthBalance() {
     }
 
-    public EthBalance(String ethBalance, String usdBalance, String btcBalance, Long id) {
+    public EthBalance(String ethBalance, String usdBalance, String btcBalance, AccountAddress accountAddress) {
         this.ethBalance = ethBalance;
         this.usdBalance = usdBalance;
         this.btcBalance = btcBalance;
-        this.accountAddressId = id;
+        this.accountAddress = accountAddress;
         this.date = LocalDateTime.now();
     }
 
@@ -48,7 +49,11 @@ public class EthBalance {
         return btcBalance;
     }
 
-    public Long getAccountAddressId() {
-        return accountAddressId;
+    public AccountAddress getAccountAddress() {
+        return accountAddress;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
     }
 }

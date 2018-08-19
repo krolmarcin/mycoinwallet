@@ -9,6 +9,8 @@ import javax.persistence.Query;
 
 public class JPAAccountAddressRepository implements AccountAddressRepository {
 
+    private String getAccountAddressByWalletId = "From AccountAddress a WHERE a.walletId = :walletId";
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -19,13 +21,14 @@ public class JPAAccountAddressRepository implements AccountAddressRepository {
 
     @Override
     public AccountAddress get(String walletId) {
-        return null;
+        Query query = entityManager.createQuery(getAccountAddressByWalletId);
+        query.setParameter("walletId", walletId);
+        return (AccountAddress) query.getResultList().get(0);
     }
 
     @Override
     public Long getId(String walletId) {
-        String queryMessage = "From AccountAddress a WHERE a.walletId=:walletId";
-        Query query = entityManager.createQuery(queryMessage);
+        Query query = entityManager.createQuery(getAccountAddressByWalletId);
         query.setParameter("walletId", walletId);
         AccountAddress accountAddress = (AccountAddress) query.getResultList().get(0);
         return accountAddress.getId();
@@ -33,8 +36,7 @@ public class JPAAccountAddressRepository implements AccountAddressRepository {
 
     @Override
     public boolean exists(String walletId) {
-        String queryMessage = "From AccountAddress a WHERE a.walletId=:walletId";
-        Query query = entityManager.createQuery(queryMessage);
+        Query query = entityManager.createQuery(getAccountAddressByWalletId);
         query.setParameter("walletId", walletId);
         return (!query.getResultList().isEmpty());
     }
